@@ -1,0 +1,168 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	text-decoration: none;
+	font-weight: inherit;
+	font-style: inherit;
+	color: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+	list-style: none;
+	border-collapse: collapse;
+	border-spacing: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	background: #222;
+	padding: 0px;
+	margin: 0px;
+	font-family: 'Fira Code', 'hack', 'Monospaced', 'Courier New', 'Courier', monospace;
+	xletter-spacing: -.1em;
+	color: white;
+}
+
+body > div {
+	/*! min-height: calc(100vh - 60px); */
+	padding: .5em 1em;
+	font-size: 12px;
+	position: relative;
+}
+
+nav {
+	padding: 1em 0 1em 0;
+}
+
+nav * {
+	display: inline;
+}
+
+nav ul li{
+	margin: 0 1em 0 0;
+	font-size: 1.25em;
+	color: #777;
+	transition: 0.5s;
+	margin: 1em 1em .5em 0;
+	text-transform: uppercase;
+}
+
+.create nav ul li:nth-child(1), .edit nav ul li:nth-child(2){
+	color: #fff;
+}
+
+.create nav ul li:nth-child(1)::after, .edit nav ul li:nth-child(2)::after{
+	content: '◆';
+	font-size: 1.3em;
+	line-height: .9em;
+	color: #fff;
+}
+
+.create nav ul li:nth-child(n+2)::after{
+	content: '→';
+}
+
+.edit nav ul li:nth-child(odd)::after{
+	content: '→';
+}
+
+nav ul li:hover{
+	color: #fff;
+	transition: 0.5s;
+}
+
+textarea {
+	width: calc(100vw - 4em);
+	min-height: calc(100vh - 17.3em);
+	padding: .5em;
+	border-radius: 2px;
+	color: black;
+	margin: 0 0 1em 0;
+}
+
+textarea#create_content {
+	min-height: 5.6em;
+	max-width: 31.7em;
+	float: left;
+	/*! clear: right; */
+}
+
+input {
+	margin: 0 0 1em 0;
+	padding: .5em;
+	border-radius: 2px;
+	color: black;
+}
+
+button {
+	background: black;
+	color: white;
+	padding: .5em;
+	border-radius: 2px;
+}
+
+input#timefield {
+	width: 15em;
+	float:left;
+}
+
+input#submit, input#create {
+	background: black;
+	color: white;
+	border-radius: 2px;
+	-webkit-appearance: none;
+	float: left;
+	/*! margin-right: 1em; */
+	clear: both;
+}
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+
+/* Portrait */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+	textarea {
+		width: calc(95vw);
+		min-height: calc(100vh - 16.3em);
+		border-radius: 2px;
+		color: black;
+	}
+	body > div {
+
+	}
+	input#submit {
+		width: 5em;
+		right: -10em;
+		top: .5em;
+	}
+	#copy {
+		float: left;
+		clear:right;
+	}
+	#refresh {
+		float: left;
+	}
+}
+
+/* Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+}
