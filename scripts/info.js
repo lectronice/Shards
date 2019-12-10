@@ -87,9 +87,6 @@ function Info (sites) {
     const relevantEntries = localEntries.filter(val => !this.finder.filter || (val.author === this.finder.filter || val.channel === this.finder.filter ||
       val.dateYear === this.finder.filter || val.dateMonth === this.finder.filter || val.dateDay === this.finder.filter || val.tags.includes(this.finder.filter) ||
       val.projects.includes(this.finder.filter) || val.moods.includes(this.finder.filter)))
-//    console.log(years)
-//    console.log(months)
-//    console.log(days)
 
     const mainHtml = `
     <div id='list'>
@@ -168,14 +165,6 @@ function Info (sites) {
       </div>
     </aside>`
 
-//    <ul id='users'>
-//      ${Object.keys(users).slice(0, 15).reduce((acc, val) => acc + `<li onclick='filter("${val}")' class='${hallway.finder.filter === val ? 'selected' : ''}' href='#${val}'>${val} <span class='right'>${users[val]}</span></li>\n`, '')}
-//    </ul>
-
-//    <ul id='months'>
-//      ${Object.keys(months).slice(0, 15).reduce((acc, val) => acc + `<li onclick='filter("${val}")' class='${hallway.finder.filter === val ? 'selected' : ''}' href='#${val}'>${val} <span class='right'>${months[val]}</span></li>\n`, '')}
-//    </ul>
-
     this._menu.innerHTML = `${aside}`
 
     this._main.innerHTML = `${mainHtml}`
@@ -252,7 +241,6 @@ function Info (sites) {
   this.templateEntry = function (entry) {
     entry.html = entry.body
       .replace(reChannel, '')
-      //.replace(reChannel, `$1<span class='channel'>/$2</span>`)
       .replace(reUser, this.findMention)
       .replace(reTag, '$1<span class="tag">$2</span>')
       .replace(reProject, '')
@@ -275,7 +263,6 @@ function Info (sites) {
     if (entry.moods[0] == '-') {moodIcon = '<span id="down" title="Mood -"></span>'}
     if (entry.moods[0] == '--') {moodIcon = '<span id="down" title="Mood --"></span>'}
 
-    //return `<li class='entry ${highlight ? 'highlight' : ''}'><span class='title'>/${entry.channel} ${prefix}${entry.projects}</span><span class='date' title='${entry.author} → ${timeAgo(Date.parse(entry.date))}'>${entry.date}</span> <a class='author' href='${origin}' target='_blank'>${entry.author}</a> <span class='body'>${entry.html}</span></li>`
     return `<li class='entry ${highlight ? 'highlight' : ''}'><span class='title'>/${entry.channel} ${titlePrefix}${entry.projects}</span><span class='date'>${entry.date}::${timeAgo(Date.parse(entry.date))}</span> <a class='author' href='${origin}' target='_blank'>${entry.author}</a> <span class='mood'>${moodIcon}</span> <span class='body'>${entry.html}</span></li>`
 
   }
@@ -322,7 +309,6 @@ function Info (sites) {
       const dateYear = date.substring(0,4)
       const dateMonth = date.substring(5,7)
       const dateDay = date.substring(8,10)
-      //const dateNoTime = [dateYear, dateMonth, dateDay]
       const body = escapeHtml(parts[1].trim()).trim()
       const channel = body.substr(0, 1) === '/' ? body.split(' ')[0].substr(1) : body.substr(0, 1) === '@' ? 'Veranda' : 'Random'
       const tags = (body.match(reTag) || []).map(a => a.substr(a.indexOf('#') + 1))
@@ -330,7 +316,6 @@ function Info (sites) {
       const moods = (body.match(reMood) || ['=']).map(a => a.substr(a.indexOf(':') + 1))
       const offset = new Date() - new Date(date)
       entries.push({ date, dateYear, dateMonth, dateDay, body, author, offset, channel, tags, projects, moods })
-      //console.log(dateNoTime)
     }
     return entries
   }
@@ -421,32 +406,6 @@ function openNav() {
   document.getElementById("list").style.marginLeft = "21em";
 
 }
-
-// function closeNav() {
-//   let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-//   if (w < 630) {
-//     document.getElementById("aside").style.display = "inherit";
-//     document.getElementById("footer").style.marginLeft = "-.15em";
-//     document.getElementById("list").style.marginLeft = "0";
-//   } else {
-//     document.getElementById("footer").style.marginLeft = "2.35em";
-//     document.getElementById("list").style.marginLeft = "2.5em";
-//   }
-//   document.getElementById("aside").style.opacity = "0";
-//   document.getElementById("aside").style.width = "0";
-//   document.getElementById("closebtn").style.opacity = "0";
-//   document.getElementById("closebtn").style.cursor = "default";
-//   document.getElementById("openbtn").style.opacity = "1";
-//   document.getElementById("openbtn").style.cursor = "pointer";
-// }
-//
-// function toggleToTop() {
-//     if (document.documentElement.scrollHeight > document.documentElement.clientHeight) {
-//     document.getElementById("totop").style.display = "block";
-//   } else {
-//     document.getElementById("totop").style.display = "none";
-//   }
-// }
 
 window.onload = function() {
   toggleToTop();
